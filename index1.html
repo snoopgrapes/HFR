@@ -638,6 +638,21 @@
             100% { opacity: 1; }
         }
 
+        /* Mobile Menu Styles */
+        #mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 40;
+        }
+
+        #mobile-menu.hidden {
+            display: none;
+        }
+
         /* Responsive - FIXED */
         @media (max-width: 768px) {
             .hero {
@@ -719,6 +734,11 @@
             .announcement-right {
                 justify-content: center;
                 width: 100%;
+            }
+
+            /* Burger button animation */
+            #mobile-menu-button.active svg {
+                transform: rotate(90deg);
             }
         }
 
@@ -810,7 +830,7 @@
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-gray-700 hover:text-yellow-600 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
@@ -940,7 +960,7 @@
                     <!-- Image Carousel -->
                     <div class="image-carousel">
                         <div class="carousel-images">
-							<img src="images/Fruit of Freedom Certs.jpg" alt="Hope for Recovery Image 1" class="carousel-image">
+							<img src="images/Fruit_of_Freedom_Certs.jpg" alt="Hope for Recovery Image 1" class="carousel-image">
                             <img src="images/hfr4.jpg" alt="Hope for Recovery Image 2" class="carousel-image">
                             <img src="images/hfr3.jpg" alt="Hope for Recovery Image 3" class="carousel-image">
                         </div>
@@ -1071,78 +1091,72 @@
     </div>
 
     <script>
-        // Mobile Menu Toggle - FIXED: Use correct ID selector
+        // Mobile Menu Toggle - FIXED: Target #mobile-menu and toggle 'hidden' class
         const menuToggle = document.getElementById('mobile-menu-button');
-        const nav = document.querySelector('nav');
+        const mobileMenu = document.getElementById('mobile-menu');
 
         menuToggle.addEventListener('click', function() {
             menuToggle.classList.toggle('active');
-            nav.classList.toggle('active');
+            mobileMenu.classList.toggle('hidden');
             
             // Toggle body scroll
-            if (nav.classList.contains('active')) {
+            if (!mobileMenu.classList.contains('hidden')) {
                 document.body.style.overflow = 'hidden';
             } else {
                 document.body.style.overflow = 'auto';
             }
         });
 
-        // Close menu when clicking on a nav link (for mobile)
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
+        // Close menu when clicking on a mobile nav link
+        const mobileNavLinks = document.querySelectorAll('#mobile-menu a');
+        mobileNavLinks.forEach(link => {
             link.addEventListener('click', function() {
-                if (window.innerWidth <= 900) {
-                    menuToggle.classList.remove('active');
-                    nav.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
             });
         });
 
         // Close menu when clicking outside (for mobile)
         document.addEventListener('click', function(event) {
-            const isClickInsideNav = nav.contains(event.target);
+            const isClickInsideMenu = mobileMenu.contains(event.target);
             const isClickOnToggle = menuToggle.contains(event.target);
             
-            if (window.innerWidth <= 900 && nav.classList.contains('active') && 
-                !isClickInsideNav && !isClickOnToggle) {
+            if (window.innerWidth <= 768 && !mobileMenu.classList.contains('hidden') && 
+                !isClickInsideMenu && !isClickOnToggle) {
                 menuToggle.classList.remove('active');
-                nav.classList.remove('active');
+                mobileMenu.classList.add('hidden');
                 document.body.style.overflow = 'auto';
             }
         });
 
         // Close menu on window resize if it becomes larger than mobile
         window.addEventListener('resize', function() {
-            if (window.innerWidth > 900) {
+            if (window.innerWidth > 768) {
                 menuToggle.classList.remove('active');
-                nav.classList.remove('active');
+                mobileMenu.classList.add('hidden');
                 document.body.style.overflow = 'auto';
             }
         });
 
-        // Smooth scrolling for anchor links
+        // Smooth scrolling for anchor links (updated for both desktop and mobile)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                // Only prevent default and smooth scroll if it's a menu link
-                if (e.currentTarget.closest('nav')) {
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
                     e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
 
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-
-                        // Close mobile menu after clicking a link
-                        if (window.innerWidth <= 900) {
-                            menuToggle.classList.remove('active');
-                            nav.classList.remove('active');
-                            document.body.style.overflow = 'auto';
-                        }
+                    // Close mobile menu after clicking a link
+                    if (window.innerWidth <= 768) {
+                        menuToggle.classList.remove('active');
+                        mobileMenu.classList.add('hidden');
+                        document.body.style.overflow = 'auto';
                     }
                 }
             });

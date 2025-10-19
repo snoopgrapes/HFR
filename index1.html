@@ -670,6 +670,7 @@
             .card-inner {
                 transform-style: flat;
                 height: auto;
+                position: static;
             }
 
             .service-card:hover .card-inner {
@@ -678,6 +679,12 @@
 
             .card-back {
                 display: none;
+            }
+
+            .service-card .card-front {
+                position: relative;
+                min-height: auto;
+                overflow: hidden;
             }
 
             #churchMap {
@@ -914,7 +921,7 @@
                         <div class="card-back">
                             <h3>Free Food</h3>
                             <p>Pool competitions</p>
-                            <p>Freindly welcome</p>
+                            <p>Friendly welcome</p>
                             <p>Support</p>
                             <p>Foodbank</p>
                         </div>
@@ -933,8 +940,8 @@
                     <!-- Image Carousel -->
                     <div class="image-carousel">
                         <div class="carousel-images">
-							<img src="images/Fruit of Freedom Certs.jpg" alt="Hope for Recovery Image 2" class="carousel-image">
-                            <img src="images/hfr4.jpg" alt="Hope for Recovery Image 1" class="carousel-image">
+							<img src="images/Fruit of Freedom Certs.jpg" alt="Hope for Recovery Image 1" class="carousel-image">
+                            <img src="images/hfr4.jpg" alt="Hope for Recovery Image 2" class="carousel-image">
                             <img src="images/hfr3.jpg" alt="Hope for Recovery Image 3" class="carousel-image">
                         </div>
                         <div class="carousel-dots">
@@ -1064,8 +1071,8 @@
     </div>
 
     <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector('.menu-toggle');
+        // Mobile Menu Toggle - FIXED: Use correct ID selector
+        const menuToggle = document.getElementById('mobile-menu-button');
         const nav = document.querySelector('nav');
 
         menuToggle.addEventListener('click', function() {

@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hope Community Church | Clydebank</title>
+
+    <!-- Favicon links -->
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="icon" type="image/png" href="icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="icons/favicon-16x16.png" sizes="16x16">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (added for announcement/navbar compatibility; won't affect custom sections) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Sunset Harmony Color Palette */
+        :root {
+            --primary: #FF7D00;
+            --secondary: #7209B7;
+            --accent: #FF9E00;
+            --light: #FFF5E6;
+            --dark: #333333;
+            --text: #333333;
+            --text-light: #FFFFFF;
+            --recovery-bg: #e8f4f8; /* Light blue for recovery section */
+            --services-bg: #f0f7ee; /* Light green for services */
+            --testimonies-bg: #fdf0f5; /* Light pink for testimonies */
+            --findus-bg: #f5f0fd; /* Light purple for find us */
+            --contact-bg: #fff8e1; /* Light yellow for contact */
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Custom CSS for logo and hover effects (kept for compatibility) */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Override Tailwind for custom theme in navbar (e.g., use your colors) */
+        nav a:hover {
+            color: var(--primary) !important;
+        }
+
+        /* Rest of your existing styles (hero, sections, etc.) remain unchanged... */
+                /* Header/Hero Section - UPDATED */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            text-align: center;
+            padding: 100px 20px 80px; /* Reduced top padding since margin handles spacing */
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            /* margin-top will be set dynamically by JavaScript */
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/hero banner.png');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem; /* Reduced for mobile */
+            margin-bottom: 20px;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.1rem; /* Reduced for mobile */
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+		.section-divider-scalloped {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+}
+.hero-logo {
+    display: block;
+    margin: 0 auto 1rem; /* Centers horizontally; adds ~16px space below to the h1 */
+    max-width: 200px; /* Recommended width—adjust if your logo needs to be larger/smaller (e.g., 150px for compact, 250px for prominent) */
+    width: 100%; /* Allows responsive scaling up to max-width */
+    height: auto; /* Maintains aspect ratio */
+    opacity: 0; /* Starts hidden for animation */
+    animation: fadeInDown 1s ease 0.2s forwards; /* Fades/slides in slightly after page load, matching h1 timing */
+}
+
+/* Responsive adjustments (builds on your existing media queries) */
+@media (max-width: 768px) {
+    .hero-logo {
+        max-width: 150px; /* Scales down for mobile without feeling cramped */
+        margin-bottom: 0.75rem; /* Slightly less space on small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-logo {
+        max-width: 120px; /* Even smaller for very small devices */
+    }
+}
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease 0.6s both;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sections */
+        .section {
+            padding: 60px 20px; /* Reduced padding for mobile */
+            position: relative;
+            width: 100%;
+        }
+
+        .section-dark {
+            background-color: var(--secondary);
+            color: var(--text-light);
+        }
+
+        .section-dark h2 {
+            color: var(--text-light);
+        }
+
+        .section-accent {
+            background-color: var(--light);
+        }
+
+        .section-recovery {
+            background-color: var(--recovery-bg);
+        }
+
+        .section-services {
+            background-color: var(--services-bg);
+        }
+
+        .section-testimonies {
+            background-color: var(--testimonies-bg);
+        }
+
+        .section-findus {
+            background-color: var(--findus-bg);
+        }
+
+        .section-contact {
+            background-color: var(--contact-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            text-align: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            perspective: 1000px;
+            height: 300px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .service-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            padding: 30px;
+            box-sizing: border-box;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .card-back {
+            background-color: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .card-back h3 {
+            color: white;
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            margin-top: 0;
+        }
+
+        /* Testimonials */
+        .testimonial-gallery {
+            position: relative;
+            margin: 50px auto;
+            max-width: 800px;
+        }
+
+        .testimonial {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .testimonial.active {
+            opacity: 1;
+            position: relative;
+            pointer-events: all;
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+            text-align: right;
+        }
+
+        .gallery-dots {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: var(--primary);
+        }
+
+        /* Prayer Form Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            position: relative;
+            animation: slideDown 0.4s;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal textarea {
+            width: 100%;
+            height: 150px;
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        /* Live Badge */
+        .live-badge {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: red;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            z-index: 900;
+            display: none;
+            animation: pulse 2s infinite;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .live-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+
+        .pulse {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulseOpacity 1.5s infinite;
+        }
+
+        /* Enhanced Map Section */
+        .map-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        #churchMap {
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            position: relative;
+            padding: 20px;
+        }
+
+        .map-header {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .map-header h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .map-header p {
+            font-size: 1.1rem;
+            margin: 5px 0;
+        }
+
+        .map-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .map-placeholder a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 125, 0, 0.3);
+        }
+
+        .map-placeholder a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 125, 0, 0.4);
+            background-color: var(--accent);
+        }
+
+        .map-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Image Carousel Styles */
+        .image-carousel {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+
+        .carousel-images {
+            display: flex;
+            width: 300%; /* 3 images = 300% width */
+            height: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        .carousel-image {
+            width: 33.333%; /* Each image takes 1/3 of the container */
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pulseOpacity {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsive - FIXED */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 15px 60px; /* Further reduced for small mobile */
+                min-height: 80vh;
+            }
+
+            .hero h1 {
+                font-size: 2rem; /* Smaller for mobile */
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
+            }
+            
+            .service-card {
+                height: auto;
+                min-height: 250px;
+            }
+
+            .card-inner {
+                transform-style: flat;
+                height: auto;
+            }
+
+            .service-card:hover .card-inner {
+                transform: none;
+            }
+
+            .card-back {
+                display: none;
+            }
+
+            #churchMap {
+                height: 400px; /* Smaller for mobile */
+                padding: 15px;
+            }
+            
+            .map-header h3 {
+                font-size: 1.5rem;
+            }
+            
+            .image-carousel {
+                height: 300px;
+            }
+
+            .section {
+                padding: 50px 15px; /* Reduced padding for mobile */
+            }
+
+            /* Fix for mobile menu overlay */
+            nav.active {
+                width: 100%; /* Full width on very small screens */
+                max-width: 300px;
+            }
+
+            .announcement-inner {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .announcement-left,
+            .announcement-right {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 10px 40px;
+                min-height: 70vh;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                margin: 5px;
+                font-size: 0.9rem;
+            }
+
+            .header-container {
+                padding: 5px 10px;
+            }
+
+            .logo-container img {
+                max-width: 110px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Announcement Bar (copied from index.html, with your church links and custom colors integrated) -->
+    <div class="bg-gray-800 text-white py-2 px-4 text-center">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <a href="tel:07745-393649" class="flex items-center">
+                    <span class="mr-2">📞</span>
+                    <span>CALL NOW: 07745 393649</span>
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://www.facebook.com/profile.php?id=61581172410948" class="text-white">
+                    <span class="sr-only">Facebook</span>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/hopecommunitychurchclydebank/" class="text-white">
+                    <span class="sr-only">Instagram</span>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a href="donate.html" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-1 px-3 rounded">
+                    Give now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header/Navbar (copied from index.html, adapted with your church nav links and logo) -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="logo-container">
+                    <a href="index.html" class="flex items-center">
+                        <img src="images/rsz_1hcc.png" alt="Hope Community Church Logo" class="logo-img">
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation (your church links) -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="recovery.html" target="_blank" class="text-gray-700 hover:text-yellow-600 font-bold py-2 flex items-center">
+					Hope for Recovery
+					</a>
+                    <a href="#services" class="text-gray-700 hover:text-yellow-600 font-bold py-2 flex items-center">
+                        Worship
+                    </a>
+                    <a href="#recovery" class="text-gray-700 hover:text-yellow-600 font-bold py-2 flex items-center">
+                        Support
+                    </a>
+                    <a href="#testimonies" class="text-gray-700 hover:text-yellow-600 font-bold py-2 flex items-center">
+                        Testimonies
+                    </a>
+                    <a href="#about" class="text-gray-700 hover:text-yellow-600 font-bold py-2">About</a>
+                    <a href="intimations.html" class="text-gray-700 hover:text-yellow-600 font- py-2">What's On</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-yellow-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation (adapted with your church links and sub-items where logical) -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white py-2 px-4 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <div>
+                    <a href="recovery.html" target="_blank" class="text-gray-700 hover:text-yellow-600 font-medium block py-2">Hope for Recovery</a>
+                </div>
+                <div>
+                    <a href="#services" class="text-gray-700 hover:text-yellow-600 font-medium block py-2">Worship</a>
+                </div>
+                <div>
+                    <a href="#recovery" class="text-gray-700 hover:text-yellow-600 font-medium block py-2">Support</a>
+                </div>
+                <div>
+                    <a href="#testimonies" class="text-gray-700 hover:text-yellow-600 font-medium block py-2">Testimonies</a>
+                </div>
+                <div>
+                    <a href="#about" class="text-gray-700 hover:text-yellow-600 font-medium block py-2">About</a>
+                </div>
+                <div>
+                    <a href="intimations.html" class="text-gray-700 hover:text-yellow-600 font-medium block py-2">What's On</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="live-badge" id="liveBadge" onclick="openLiveStream()">
+        <span class="pulse"></span> LIVE: Sunday Service
+    </div>
+
+<section class="hero section-divider-scalloped">
+    <div class="hero-image"></div>
+    <div class="container">
+        <img src="images/whitelogo.png" alt="Hope Community Church Logo" class="hero-logo">
+        <h1>Hope Community Church</h1>
+        <p>A welcoming family in Clydebank where faith meets practical support and transformation.</p>
+        <div id="countdown" style="font-size: 1.5rem; margin: 20px 0; color: white;"></div>
+        <a href="#services" class="btn btn-primary">Join Us Sunday</a>
+        <a href="#recovery" class="btn btn-secondary">Recovery Support</a>
+    </div>
+</section>
+    <section class="section" id="about">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>Who We Are</h2>
+                <p style="text-align: left;">Hope Community Church, part of The Apostolic Church network, is led by Pastors Craig and Yvonne. We welcome everyone in Clydebank with open arms.</p>
+                <p style="text-align: left;">We believe in meeting people right where they are—whether you're exploring faith, seeking community, or need support through life's challenges. Our doors are open to all, no matter your background or current circumstances.</p>
+                <!--<button onclick="openPrayerForm()" class="btn btn-secondary">Submit Prayer Request</button>-->
+            </div>
+            <div>
+                <img src="images/who we are.png" alt="Church community" style="width:100%; border-radius:10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-services" id="services">
+        <div class="container">
+            <h2 style="text-align: center;">Our Weekly Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Sunday Worship Service</h3>
+                            <p><strong>Every Sunday at 11:00 AM</strong></p>
+                            <p>Join us for worship, teaching from the Bible, and fellowship.</p>
+							<p>Tea and coffee served from 10:30 AM.</p>
+                            <p><strong>Location:</strong> 30 Shelley Drive, Clydebank, G81 3EL</p>
+                        </div>
+                        <div class="card-back">
+                            <h3>What to Expect</h3>
+                            <p>Casual atmosphere</p>
+                            <p>Engaging worship</p>
+                            <p>Practical Bible teaching</p>
+                            <p>Friendly people</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Hope for Recovery</h3>
+                            <p><strong>Monday 11am to 1:30pm</strong></p>
+                            <p>Running weekly 12- wk recovery groups as part of a 2-year community based, faith to freedom, recovery pathway.</p>
+							<p style="margin-top: 15px;">Current group Overcoming temptation offers helpful & practical battle strategies to help build resilience for long-lasting change.</p>
+                        </div>
+                        <div class="card-back">
+                            <h3>Community based recovery</h3>
+                            <p>Safe environment</p>
+                            <p>Peer support</p>
+                            <p>Trained volunteers</p>
+                            <p>Everyone welcome</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Community Cafe & Emergency foodbank</h3>
+                            <p><strong>Fridays 12pm to 2pm</strong></p>
+                            <p>A warm, friendly hub to catch up with existing friends or meet new ones. Free homemade soup, pasties & beans, and tea/coffee available.  Everyone welcome, no referral required.</p>
+                        </div>
+                        <div class="card-back">
+                            <h3>Free Food</h3>
+                            <p>Pool competitions</p>
+                            <p>Freindly welcome</p>
+                            <p>Support</p>
+                            <p>Foodbank</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hope for Recovery Section -->
+    <section class="section section-recovery" id="recovery">
+        <div class="container">
+            <h2 style="text-align: center;">Hope for Recovery</h2>
+            <div class="about-grid">
+                <div>
+                    <!-- Image Carousel -->
+                    <div class="image-carousel">
+                        <div class="carousel-images">
+							<img src="images/Fruit of Freedom Certs.jpg" alt="Hope for Recovery Image 2" class="carousel-image">
+                            <img src="images/hfr4.jpg" alt="Hope for Recovery Image 1" class="carousel-image">
+                            <img src="images/hfr3.jpg" alt="Hope for Recovery Image 3" class="carousel-image">
+                        </div>
+                        <div class="carousel-dots">
+                            <span class="carousel-dot active" onclick="showCarouselImage(0)"></span>
+                            <span class="carousel-dot" onclick="showCarouselImage(1)"></span>
+                            <span class="carousel-dot" onclick="showCarouselImage(2)"></span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Our Mission</h3>
+                    <p>Hope For Recovery is a dynamic movement where lives are radically transformed through the power of the Gospel. We equip warriors with battle-tested tools through our 6 × 12-week courses — a scriptural arsenal for lasting victory.</p><br>
+                    <p>Each course can be done on its own or as part of our 2 year community based recovery program.</p><br>
+					<p></p>
+					<p>Our program focuses on healing, growth, and building a supportive community where individuals can find hope and restoration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-testimonies" id="testimonies">
+        <div class="container">
+            <h2 style="text-align: center;">Stories of Hope</h2>
+            <div class="testimonial-gallery">
+                <div class="testimonial active">
+                    <p class="testimonial-quote">"This church saved my life. The recovery program gave me structure when I had nothing left. Today I'm two years sober and rebuilding relationships with my family."</p>
+                    <p class="testimonial-author">— J.P.</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-quote">"I came for the free food at the café, but found so much more. The people here treated me like family when I had none."</p>
+                    <p class="testimonial-author">— Sarah M.</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-quote">"Pastor Craig didn't judge my past - he helped me see a future. Now I volunteer at the café to give back."</p>
+                    <p class="testimonial-author">— Iain R.</p>
+                </div>
+                <div class="gallery-dots">
+                    <span class="dot active" onclick="showTestimonial(0)"></span>
+                    <span class="dot" onclick="showTestimonial(1)"></span>
+                    <span class="dot" onclick="showTestimonial(2)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-findus">
+        <div class="container">
+            <h2 style="text-align: center;">Find Us</h2>
+            <div class="map-container">
+                <div id="churchMap">
+                    <div class="map-header">
+                        <h3>Hope Community Church</h3>
+                        <p>30 Shelley Drive, Clydebank, G81 3EL</p>
+                    </div>
+                    <div class="map-placeholder">
+                        <!-- Static map image as fallback -->
+                        <img src="images/map.png" 
+                             alt="Map to Hope Community Church" class="map-image">
+                    </div>
+                </div>
+                <!-- Moved the button outside the map container -->
+                <a href="https://www.google.com/maps/place/30+Shelley+Dr,+Clydebank+G81+3EL" target="_blank" class="btn btn-primary" style="margin-top: 20px; align-self: center;">
+                    View on Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-contact" id="contact">
+        <div class="container">
+            <h2 style="text-align: center;">Connect with Us</h2>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="https://www.instagram.com/hopecommunitychurchclydebank/" target="_blank" class="btn btn-primary">Instagram</a>
+                <a href="https://www.facebook.com/profile.php?id=61581172410948" target="_blank" class="btn btn-secondary" style="margin-left: 15px;">Facebook</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Hope Community Church Clydebank</p>
+            <p>30 Shelley Drive, Clydebank, G81 3EL</p>
+            <div class="footer-links">
+                <a href="#services">Services</a>
+                <a href="#recovery">Recovery</a>
+                <a href="#contact">Contact</a>
+                <a href="#" onclick="openPrayerForm()">Prayer</a>
+            </div>
+            <p>Part of The Apostolic Church network</p>
+            <p>&copy; <span id="year"></span> Hope Community Church. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="prayerForm" class="modal">
+        <form id="prayerRequestForm" class="modal-content" action="https://formspree.io/f/mjkazvvl" method="POST">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3>We'll Pray For You</h3>
+            <p>Submit your prayer request and our team will pray for you this week.</p>
+            <input type="email" name="email" placeholder="Your email (optional)" style="width: 100%; margin: 15px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            <textarea name="message" placeholder="Your prayer request..." required></textarea>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    
+    <!-- Directions Modal -->
+    <div id="directionsModal" class="directions-modal" style="display: none;">
+        <div class="directions-modal-content">
+            <span class="close-directions-modal" onclick="closeDirectionsModal()">&times;</span>
+            <h3>Get Directions</h3>
+            <p>Choose how you'd like to get directions to our church:</p>
+            
+            <button class="directions-option-btn" onclick="openGoogleMapsDirections()">
+                <strong>Open in Google Maps</strong><br>
+                <small>Get turn-by-turn navigation on your device</small>
+            </button>
+            
+            <button class="directions-option-btn" onclick="openAppleMapsDirections()">
+                <strong>Open in Apple Maps</strong><br>
+                <small>For iPhone and Mac users</small>
+            </button>
+            
+            <button class="directions-option-btn" onclick="showPublicTransportInfo()">
+                <strong>Public Transport Options</strong><br>
+                <small>View bus and train routes</small>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            nav.classList.toggle('active');
+            
+            // Toggle body scroll
+            if (nav.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close menu when clicking on a nav link (for mobile)
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 900) {
+                    menuToggle.classList.remove('active');
+                    nav.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Close menu when clicking outside (for mobile)
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = nav.contains(event.target);
+            const isClickOnToggle = menuToggle.contains(event.target);
+            
+            if (window.innerWidth <= 900 && nav.classList.contains('active') && 
+                !isClickInsideNav && !isClickOnToggle) {
+                menuToggle.classList.remove('active');
+                nav.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close menu on window resize if it becomes larger than mobile
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 900) {
+                menuToggle.classList.remove('active');
+                nav.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                // Only prevent default and smooth scroll if it's a menu link
+                if (e.currentTarget.closest('nav')) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+
+                        // Close mobile menu after clicking a link
+                        if (window.innerWidth <= 900) {
+                            menuToggle.classList.remove('active');
+                            nav.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    }
+                }
+            });
+        });
+
+        // Testimonial gallery
+        function showTestimonial(index) {
+            const testimonials = document.querySelectorAll('.testimonial');
+            const dots = document.querySelectorAll('.dot');
+            
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            testimonials[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        // Auto-rotate testimonials
+        let testimonialIndex = 0;
+        setInterval(() => {
+            testimonialIndex = (testimonialIndex + 1) % 3;
+            showTestimonial(testimonialIndex);
+        }, 5000);
+
+        // Image carousel
+        let currentCarouselImage = 0;
+        
+        function showCarouselImage(index) {
+            const carouselImages = document.querySelector('.carousel-images');
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            currentCarouselImage = index;
+            carouselImages.style.transform = `translateX(-${index * 33.333}%)`;
+            
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+        }
+        
+        // Auto-rotate carousel
+        setInterval(() => {
+            currentCarouselImage = (currentCarouselImage + 1) % 3;
+            showCarouselImage(currentCarouselImage);
+        }, 4000);
+
+        // Prayer form modal
+        function openPrayerForm() {
+            document.getElementById('prayerForm').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('prayerForm').style.display = 'none';
+        }
+
+        // Handle form submission
+        document.getElementById('prayerRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default submission for now; Formspree handles it via action
+
+            // Optional: Add client-side validation or show loading state
+            const form = e.target;
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    alert('Thank you for your prayer request. Our team will pray for you this week.');
+                    form.reset();
+                    closeModal();
+                } else {
+                    alert('There was an error submitting your request. Please try again.');
+                }
+            }).catch(error => {
+                alert('There was an error submitting your request. Please try again.');
+                console.error('Error:', error);
+            });
+        });
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Live badge functionality
+        function openLiveStream() {
+            window.open('https://www.youtube.com/@HopeCommunityChurchClydebank', '_blank');
+        }
+
+        // Show live badge during Sunday service hours
+        function checkLiveStatus() {
+            const now = new Date();
+            const day = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
+            const hour = now.getHours();
+            
+            // Show badge on Sundays between 10:30 AM and 1:00 PM
+            if (day === 0 && hour >= 10 && hour < 13) {
+                document.getElementById('liveBadge').style.display = 'block';
+            } else {
+                document.getElementById('liveBadge').style.display = 'none';
+            }
+        }
+
+        // Countdown to next Sunday service
+        function updateCountdown() {
+            const now = new Date();
+            const day = now.getDay();
+            const nextSunday = new Date(now);
+            
+            // Calculate days until next Sunday (0 = Sunday, so if today is Sunday, we need to check the time)
+            let daysUntilSunday = 7 - day;
+            if (day === 0) {
+                // Today is Sunday, check if service has passed
+                if (now.getHours() >= 13) {
+                    daysUntilSunday = 7; // Next Sunday is 7 days away
+                } else {
+                    daysUntilSunday = 0; // Today is Sunday, service hasn't happened yet
+                }
+            }
+            
+            nextSunday.setDate(now.getDate() + daysUntilSunday);
+            nextSunday.setHours(11, 0, 0, 0); // Set to 11:00 AM
+            
+            const diff = nextSunday - now;
+            
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = "Service starting now!";
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            
+            if (days === 0) {
+                document.getElementById('countdown').innerHTML = `Next service in ${hours}h ${minutes}m`;
+            } else {
+                document.getElementById('countdown').innerHTML = `Next service in ${days}d ${hours}h ${minutes}m`;
+            }
+        }
+
+        // Initialize functions
+        checkLiveStatus();
+        updateCountdown();
+        setInterval(updateCountdown, 60000); // Update every minute
+        setInterval(checkLiveStatus, 60000); // Check live status every minute
+
+        // Close modal if clicked outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('prayerForm');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Simple authentication simulation
+        function checkAuthStatus() {
+            // This is a simplified version - in a real app, you'd check with a server
+            const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+            const authLink = document.getElementById('authLink');
+            
+            if (isLoggedIn) {
+                authLink.textContent = 'Profile';
+                authLink.href = 'profile.html';
+                authLink.className = 'profile-link';
+            } else {
+                authLink.textContent = 'Login';
+                authLink.href = 'login.html';
+                authLink.className = 'login-link';
+            }
+        }
+
+        // Initialize auth status
+        checkAuthStatus();
+    </script>
+</body>
+</html>
